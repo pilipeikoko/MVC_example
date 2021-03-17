@@ -1,18 +1,21 @@
-package org.example.view;
+package org.bsuir.view;
 
-import org.example.model.FrameParameters;
+import org.bsuir.model.Parameters;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class MainFramePageComponentsBuilder {
+    public static final int AMOUNT_OF_LABELS = 4;
+    public static final int AMOUNT_OF_BUTTONS = 4;
+
     private final JLabel[] labelItems;
     private final JButton[] buttonItems;
     private final JSpinner pageSpinner;
 
     public MainFramePageComponentsBuilder(){
-        labelItems = new JLabel[FrameParameters.AMOUNT_OF_LABELS];
-        buttonItems = new JButton[FrameParameters.AMOUNT_OF_BUTTONS];
+        labelItems = new JLabel[AMOUNT_OF_LABELS];
+        buttonItems = new JButton[AMOUNT_OF_BUTTONS];
 
         addJLabels();
         addJButtons();
@@ -28,8 +31,8 @@ public class MainFramePageComponentsBuilder {
         JButton previousPageButton = new JButton();
         JButton nextPageButton = new JButton();
 
-        previousPageButton.setIcon(new ImageIcon(FrameParameters.ICON_LOCATION + "arrow_0" + FrameParameters.ICON_EXPANSION));
-        nextPageButton.setIcon(new ImageIcon(FrameParameters.ICON_LOCATION + "arrow_1" + FrameParameters.ICON_EXPANSION));
+        previousPageButton.setIcon(new ImageIcon(Parameters.ICON_LOCATION + "arrow_0" + Parameters.ICON_EXPANSION));
+        nextPageButton.setIcon(new ImageIcon(Parameters.ICON_LOCATION + "arrow_1" + Parameters.ICON_EXPANSION));
 
         nextPageButton.setMargin(new Insets(0, 0, 0, 0));
         previousPageButton.setMargin(new Insets(0, 0, 0, 0));

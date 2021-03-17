@@ -1,6 +1,6 @@
-package org.example.controller;
+package org.bsuir.controller;
 
-import org.example.view.View;
+import org.bsuir.view.MainFrameView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,11 +9,11 @@ import javax.swing.table.DefaultTableModel;
 
 public class Controller implements ActionListener {
 
-    View view;
+    MainFrameView mainFrameView;
     private final DefaultTableModel model;
 
-    public Controller(View view, DefaultTableModel model) {
-        this.view = view;
+    public Controller(MainFrameView mainFrameView, DefaultTableModel model) {
+        this.mainFrameView = mainFrameView;
         this.model = model;
     }
 

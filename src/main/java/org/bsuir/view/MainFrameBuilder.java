@@ -1,6 +1,6 @@
-package org.example.view;
+package org.bsuir.view;
 
-import org.example.model.Model;
+import org.bsuir.model.Model;
 
 import javax.swing.*;
 import java.awt.*;
@@ -36,7 +36,6 @@ public class MainFrameBuilder {
         setVerticalLayout(layout);
 
         frame.pack();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(700, 300);
 
         frame.setVisible(true);

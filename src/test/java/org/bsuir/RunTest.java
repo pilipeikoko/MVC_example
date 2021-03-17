@@ -1,4 +1,4 @@
-package org.example;
+package org.bsuir;
 
 import static org.junit.Assert.assertTrue;
 

@@ -1,4 +1,4 @@
-package org.example.model;
+package org.bsuir.model;
 
 import javax.swing.table.DefaultTableModel;
 

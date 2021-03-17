@@ -1,6 +1,6 @@
-package org.example.view;
+package org.bsuir.view;
 
-import org.example.model.Model;
+import org.bsuir.model.Model;
 
 import javax.swing.*;
 import java.awt.*;

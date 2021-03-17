@@ -1,16 +1,18 @@
-package org.example.view;
+package org.bsuir.view;
 
-import org.example.model.FrameParameters;
+import org.bsuir.model.Parameters;
 
 import java.awt.*;
 
 public class MainFrameMenuBarBuilder {
 
+    public static final int AMOUNT_OF_MENU_BAR_ITEMS = 5;
+
     private MenuBar menuBar;
     private final MenuItem[] menuBarItems;
 
     public MainFrameMenuBarBuilder() {
-        menuBarItems = new MenuItem[FrameParameters.AMOUNT_OF_MENU_BAR_ITEMS];
+        menuBarItems = new MenuItem[AMOUNT_OF_MENU_BAR_ITEMS];
         makeMenuBar();
     }
 
