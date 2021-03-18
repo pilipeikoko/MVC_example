@@ -5,11 +5,11 @@ import org.bsuir.model.Model;
 import javax.swing.*;
 import java.awt.*;
 
-public class MainFrameTableBuilder {
+public class TableBuilder {
     private final JTable table;
     private final JScrollPane tableScrollPane;
 
-    public MainFrameTableBuilder(Model model){
+    public TableBuilder(Model model){
         this.table = new JTable();
         this.tableScrollPane = new JScrollPane(table);
 

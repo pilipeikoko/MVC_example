@@ -1,32 +1,64 @@
 package org.bsuir.view;
 
 import org.bsuir.model.Model;
+import org.bsuir.model.Parameters;
+import org.jdatepicker.impl.JDatePanelImpl;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
-public class MainFrameBuilder {
-    private final JFrame frame;
-
-    private final MenuBarBuilder menuBarBuilder;
+public class SearchPatientBuilder {
+    private final CardsBuilder cardsBuilder;
+    private final JButton searchButton;
+    private final JDialog dialog;
+    private final JComboBox<String> searchByTypeComboBox;
     private final TableBuilder tableBuilder;
     private final PageComponentsBuilder pageComponentsBuilder;
 
-    public MainFrameBuilder(Model model) {
-        menuBarBuilder = new MenuBarBuilder();
+    public SearchPatientBuilder(Model model){
+        cardsBuilder = new CardsBuilder();
+
+        searchButton = new JButton("Search");
+
+        dialog = new JDialog();
+        dialog.setPreferredSize(new Dimension(900, 525));
+
+        searchByTypeComboBox = new JComboBox<>(Parameters.DELETE_TYPES);
+        searchByTypeComboBox.setMaximumSize(new Dimension(30, 100));
+
         tableBuilder = new TableBuilder(model);
         pageComponentsBuilder = new PageComponentsBuilder();
 
-        frame = new JFrame("Hospital database");
-        setFrame();
+        //todo remove controller
+        searchByTypeComboBox.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                CardLayout layout = (CardLayout)(cardsBuilder.getCards().getLayout());
+                layout.show(cardsBuilder.getCards(), (String)e.getItem());
+            }
+        });
+
+        JPanel defaultSearchPanel = createDefaultDeletePanel();
+        JPanel tablePanel = createTablePanel();
+
+        dialog.add(defaultSearchPanel,BorderLayout.NORTH);
+        dialog.add(cardsBuilder.getCards(),BorderLayout.CENTER);
+        dialog.add(searchButton,BorderLayout.SOUTH);
+        dialog.add(tablePanel,BorderLayout.EAST);
+
+
+
+        dialog.pack();
+        dialog.setVisible(true);
     }
 
-    private void setFrame() {
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setMenuBar(menuBarBuilder.getMenuBar());
-
-        GroupLayout layout = new GroupLayout(frame.getContentPane());
-        frame.getContentPane().setLayout(layout);
+    private JPanel createTablePanel() {
+        JPanel tablePanel = new JPanel();
+        tablePanel.setPreferredSize(new Dimension(700,300));
+        GroupLayout layout = new GroupLayout(tablePanel);
+        tablePanel.setLayout(layout);
 
         layout.setAutoCreateGaps(true);
         layout.setAutoCreateContainerGaps(true);
@@ -34,10 +66,7 @@ public class MainFrameBuilder {
         setHorizontalLayout(layout);
         setVerticalLayout(layout);
 
-        frame.pack();
-        frame.setSize(700, 300);
-
-        frame.setVisible(true);
+        return tablePanel;
     }
 
     private void setVerticalLayout(GroupLayout layout) {
@@ -55,6 +84,7 @@ public class MainFrameBuilder {
                         .addComponent(pageComponentsBuilder.getButtonItems()[3]))
                 .addComponent(pageComponentsBuilder.getLabelItems()[2])
                 .addComponent(pageComponentsBuilder.getLabelItems()[3]));
+
     }
 
     private void setHorizontalLayout(GroupLayout layout) {
@@ -76,25 +106,35 @@ public class MainFrameBuilder {
 
     }
 
+    private JPanel createDefaultDeletePanel() {
+        JLabel searchByLabel = new JLabel("Search by:");
 
-    public MenuItem[] getMenuBarItems(){
-        return this.menuBarBuilder.getMenuBarItems();
+        JPanel defaultSearchPanel = new JPanel();
+
+        defaultSearchPanel.add(searchByLabel);
+        defaultSearchPanel.add(searchByTypeComboBox);
+        defaultSearchPanel.setMaximumSize(new Dimension(300,100));
+
+        return defaultSearchPanel;
     }
 
-    public JButton[] getButtonItems(){
-        return this.pageComponentsBuilder.getButtonItems();
+    public JButton getDeleteButton() {
+        return searchButton;
     }
 
-    public JLabel[] getLabelItems(){
-        return this.pageComponentsBuilder.getLabelItems();
+    public JTextField[] getTextFields() {
+        return cardsBuilder.getTextFields();
     }
 
-    public JSpinner getPageSpinner(){
-        return this.pageComponentsBuilder.getPageSpinner();
+    public JLabel[] getLabelItems() {
+        return cardsBuilder.getLabelItems();
     }
 
-    public JFrame getFrame(){
-        return this.frame;
+    public JDatePanelImpl[] getDatePanels() {
+        return cardsBuilder.getDatePanels();
     }
 
+    public JComboBox<String> getDeleteByTypeComboBox() {
+        return searchByTypeComboBox;
+    }
 }

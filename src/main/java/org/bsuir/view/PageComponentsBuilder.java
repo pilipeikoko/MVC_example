@@ -5,7 +5,7 @@ import org.bsuir.model.Parameters;
 import javax.swing.*;
 import java.awt.*;
 
-public class MainFramePageComponentsBuilder {
+public class PageComponentsBuilder {
     public static final int AMOUNT_OF_LABELS = 4;
     public static final int AMOUNT_OF_BUTTONS = 4;
 
@@ -13,7 +13,7 @@ public class MainFramePageComponentsBuilder {
     private final JButton[] buttonItems;
     private final JSpinner pageSpinner;
 
-    public MainFramePageComponentsBuilder(){
+    public PageComponentsBuilder(){
         labelItems = new JLabel[AMOUNT_OF_LABELS];
         buttonItems = new JButton[AMOUNT_OF_BUTTONS];
 

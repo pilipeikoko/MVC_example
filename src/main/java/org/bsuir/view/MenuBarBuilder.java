@@ -4,21 +4,21 @@ import org.bsuir.model.Parameters;
 
 import java.awt.*;
 
-public class MainFrameMenuBarBuilder {
+public class MenuBarBuilder {
 
     public static final int AMOUNT_OF_MENU_BAR_ITEMS = 5;
 
     private MenuBar menuBar;
     private final MenuItem[] menuBarItems;
 
-    public MainFrameMenuBarBuilder() {
+    public MenuBarBuilder() {
         menuBarItems = new MenuItem[AMOUNT_OF_MENU_BAR_ITEMS];
         makeMenuBar();
     }
 
     private void makeMenuBar() {
         MenuItem openFileItem = new MenuItem("Open file");
-        MenuItem saveAsItem = new MenuItem("Save us");
+        MenuItem saveAsItem = new MenuItem("Save as");
         MenuItem addPatient = new MenuItem("Add");
         MenuItem deletePatient = new MenuItem("Delete");
         MenuItem searchPatient = new MenuItem("Search");

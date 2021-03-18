@@ -5,9 +5,6 @@ import org.jdatepicker.impl.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Properties;
 
 
@@ -46,7 +43,7 @@ public class AddPatientBuilder {
 
     private void setDialog() {
         dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        dialog.setPreferredSize(new Dimension(100, 100));
+        dialog.setPreferredSize(new Dimension(450, 300));
 
         GroupLayout layout = new GroupLayout(dialog.getContentPane());
         dialog.getContentPane().setLayout(layout);
