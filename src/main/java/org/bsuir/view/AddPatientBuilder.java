@@ -1,5 +1,6 @@
 package org.bsuir.view;
 
+import org.bsuir.model.DateLabelFormatter;
 import org.jdatepicker.impl.*;
 
 import javax.swing.*;
@@ -13,9 +14,6 @@ import java.util.Properties;
 public class AddPatientBuilder {
     private final JDialog dialog;
 
-    private final static String DATE_PATTERN = "yyyy-MM-dd";
-    private final static SimpleDateFormat DATE_FORMATTER = new SimpleDateFormat(DATE_PATTERN);
-
     private final static int AMOUNT_OF_LABELS = 6;
     private final static int AMOUNT_OF_TEXT_FIELDS = 4;
     private final static int AMOUNT_OF_DATE_PANELS = 2;
@@ -26,26 +24,6 @@ public class AddPatientBuilder {
     private final JDatePickerImpl[] datePickers;
     private final JButton enterButton;
 
-    private static class DateLabelFormatter extends JFormattedTextField.AbstractFormatter {
-
-        private String datePattern = "yyyy-MM-dd";
-
-        @Override
-        public Object stringToValue(String text) throws ParseException {
-            return DATE_FORMATTER.parseObject(text);
-        }
-
-        @Override
-        public String valueToString(Object value) throws ParseException {
-            if (value != null) {
-                Calendar calendar = (Calendar) value;
-                return DATE_FORMATTER.format(calendar.getTime());
-            }
-
-            return "";
-        }
-
-    }
 
     public AddPatientBuilder() {
         labelItems = new JLabel[AMOUNT_OF_LABELS];
@@ -117,7 +95,8 @@ public class AddPatientBuilder {
                 .addComponent(textFields[2])
                 .addComponent(labelItems[3])
                 .addComponent(textFields[3])
-                .addComponent(enterButton));
+                .addComponent(enterButton)
+        );
     }
 
     private void setHorizontalLayout(GroupLayout layout) {
@@ -136,7 +115,9 @@ public class AddPatientBuilder {
                         .addComponent(labelItems[4])
                         .addComponent(datePickers[0])
                         .addComponent(labelItems[5])
-                        .addComponent(datePickers[1])));
+                        .addComponent(datePickers[1])
+                )
+        );
     }
 
     private void addTextFields() {
