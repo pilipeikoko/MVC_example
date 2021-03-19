@@ -25,7 +25,7 @@ public class SearchPatientBuilder {
         dialog = new JDialog();
         dialog.setPreferredSize(new Dimension(900, 525));
 
-        searchByTypeComboBox = new JComboBox<>(Parameters.DELETE_TYPES);
+        searchByTypeComboBox = new JComboBox<>(Parameters.SEARCH_TYPES);
         searchByTypeComboBox.setMaximumSize(new Dimension(30, 100));
 
         tableBuilder = new TableBuilder(model);

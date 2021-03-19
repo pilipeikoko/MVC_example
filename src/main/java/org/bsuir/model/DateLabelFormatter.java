@@ -16,7 +16,7 @@ public class DateLabelFormatter extends JFormattedTextField.AbstractFormatter {
     }
 
     @Override
-    public String valueToString(Object value) throws ParseException {
+    public String valueToString(Object value) {
         if (value != null) {
             Calendar calendar = (Calendar) value;
             return DATE_FORMATTER.format(calendar.getTime());

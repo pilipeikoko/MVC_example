@@ -31,9 +31,9 @@ public class CardsBuilder {
         JPanel birthdayPanel = createBirthdayPanel();
         JPanel fullDoctorsNameOrReceiptDatePanel = createFullDoctorsNameOrReceiptDatePanel();
 
-        cards.add(surnameOrAddressPanel, Parameters.DELETE_TYPES[0]);
-        cards.add(birthdayPanel, Parameters.DELETE_TYPES[1]);
-        cards.add(fullDoctorsNameOrReceiptDatePanel,Parameters.DELETE_TYPES[2]);
+        cards.add(surnameOrAddressPanel, Parameters.SEARCH_TYPES[0]);
+        cards.add(birthdayPanel, Parameters.SEARCH_TYPES[1]);
+        cards.add(fullDoctorsNameOrReceiptDatePanel,Parameters.SEARCH_TYPES[2]);
     }
 
     private JPanel createFullDoctorsNameOrReceiptDatePanel() {

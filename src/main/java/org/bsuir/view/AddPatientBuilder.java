@@ -70,6 +70,8 @@ public class AddPatientBuilder {
         datePanels[0] = dateOfBirthPanel;
         datePanels[1] = dateOfReceiptPanel;
 
+
+
         datePickers[0] = dateOfBirthPicker;
         datePickers[1] = dateOfReceiptPicker;
     }

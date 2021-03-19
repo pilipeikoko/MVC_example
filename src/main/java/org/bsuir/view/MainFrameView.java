@@ -1,15 +1,16 @@
 package org.bsuir.view;
 
+import org.bsuir.controller.MainFrameController;
 import org.bsuir.model.Model;
 
 public class MainFrameView {
 
     public MainFrameView() {
-        MainFrameBuilder frameBuilder = new MainFrameBuilder(new Model());
+        Model model = new Model();
+        MainFrameBuilder frameBuilder = new MainFrameBuilder(model);
 
-        new AddPatientView();
-        new DeletePatientView();
-        new SearchPatientView(new Model());
+        MainFrameController mainFrameController = new MainFrameController(model,frameBuilder.getMenuBarItems(),frameBuilder.getButtonItems(),frameBuilder.getLabelItems(), frameBuilder.getPageSpinner());
+
     }
 
 }

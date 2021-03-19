@@ -23,7 +23,7 @@ public class DeletePatientBuilder {
         dialog = new JDialog();
         dialog.setPreferredSize(new Dimension(400, 220));
 
-        deleteByTypeComboBox = new JComboBox<>(Parameters.DELETE_TYPES);
+        deleteByTypeComboBox = new JComboBox<>(Parameters.SEARCH_TYPES);
         deleteByTypeComboBox.setMaximumSize(new Dimension(30, 100));
 
         //TODO remove controller
