@@ -4,19 +4,26 @@ import javax.swing.*;
 
 public class Alert {
 
-    public static void successfulDeletionAlert(int amount){
-        JOptionPane.showMessageDialog(null,amount+" was successfully removed");
+    public static void deletionAlert(int amount) {
+        if (amount == 0)
+            unsuccessfulDeletionAlert();
+        else
+            successfulDeletionAlert(amount);
     }
 
-    public static void unsuccessfulDeletionAlert(){
-        JOptionPane.showMessageDialog(null,"nothing found");
+    private static void successfulDeletionAlert(int amount) {
+        JOptionPane.showMessageDialog(null, amount + " patients was successfully removed");
     }
 
-    public static void successfulAddingAlert(){
-        JOptionPane.showMessageDialog(null,"successfully added");
+    private static void unsuccessfulDeletionAlert() {
+        JOptionPane.showMessageDialog(null, "Nothing found");
     }
 
-    public static void unsuccessfulAddingAlert(String reason){
-        JOptionPane.showMessageDialog(null,"Incorrect format: " + reason);
+    public static void successfulAddingAlert() {
+        JOptionPane.showMessageDialog(null, "successfully added");
+    }
+
+    public static void unsuccessfulAddingAlert(String reason) {
+        JOptionPane.showMessageDialog(null, "Incorrect format: " + reason);
     }
 }

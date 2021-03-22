@@ -2,13 +2,13 @@ package org.bsuir.controller;
 
 import org.bsuir.model.Model;
 import org.bsuir.model.Patient;
-import org.bsuir.view.AddPatientBuilder;
 import org.jdatepicker.impl.JDatePanelImpl;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.util.Date;
 
+//todo add alerts
 public class AddPatientController {
     private final Model model;
     private Patient patient;
@@ -21,10 +21,10 @@ public class AddPatientController {
         this.textFields = textFields;
         this.datePanels = datePanels;
         this.enterButton = enterButton;
-        setButtonAction();
+        setEnterButtonAction();
     }
 
-    private void setButtonAction() {
+    private void setEnterButtonAction() {
         enterButton.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -37,22 +37,12 @@ public class AddPatientController {
     }
 
     private void addPatientToModel() {
-        model.addRow(parsePatient());
+        model.addPatient(patient);
     }
 
-    private Object[] parsePatient(){
-        Object[] objects = new Object[6];
-        objects[0] = patient.getFullName();
-        objects[1] = patient.getPlaceOfResidence();
-        objects[2] =patient.getBirthday();
-        objects[3] =patient.getDateOfReceipt();
-        objects[4] =patient.getDoctorsFullName();
-        objects[5] =patient.getConclusion();
-        return objects;
-
-    }
 
     private void checkInfo() {
+        //todo
     }
 
     private void getInfo() {

@@ -67,6 +67,8 @@ public class AddPatientBuilder {
         JDatePanelImpl dateOfReceiptPanel = new JDatePanelImpl(dateOfReceiptModel, new Properties());
         JDatePickerImpl dateOfReceiptPicker = new JDatePickerImpl(dateOfReceiptPanel, new DateLabelFormatter());
 
+
+
         datePanels[0] = dateOfBirthPanel;
         datePanels[1] = dateOfReceiptPanel;
 

@@ -23,10 +23,11 @@ public class SearchPatientBuilder {
         searchButton = new JButton("Search");
 
         dialog = new JDialog();
-        dialog.setPreferredSize(new Dimension(900, 525));
+        dialog.setPreferredSize(new Dimension(920, 525));
 
         searchByTypeComboBox = new JComboBox<>(Parameters.SEARCH_TYPES);
         searchByTypeComboBox.setMaximumSize(new Dimension(30, 100));
+
 
         tableBuilder = new TableBuilder(model);
         pageComponentsBuilder = new PageComponentsBuilder();
@@ -134,7 +135,11 @@ public class SearchPatientBuilder {
         return cardsBuilder.getDatePanels();
     }
 
-    public JComboBox<String> getDeleteByTypeComboBox() {
+    public JComboBox<String> getSearchByTypeComboBox() {
         return searchByTypeComboBox;
+    }
+
+    public JTable getTable(){
+        return tableBuilder.getTable();
     }
 }

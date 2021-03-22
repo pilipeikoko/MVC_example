@@ -2,8 +2,6 @@ package org.bsuir.model;
 
 import java.util.Date;
 
-//"Full name of patient", "Place of residence \n",
-//        "Birthday", "Date of receipt", "Doctor's full name", "Conclusion"};""
 public class Patient {
     private final String fullName;
     private final String placeOfResidence;

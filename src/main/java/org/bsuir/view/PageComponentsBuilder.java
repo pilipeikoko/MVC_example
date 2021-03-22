@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class PageComponentsBuilder {
+    public static final String ICON_LOCATION = "src/main/resources/icons/";
+    public static final String ICON_EXPANSION = ".png";
     public static final int AMOUNT_OF_LABELS = 4;
     public static final int AMOUNT_OF_BUTTONS = 4;
 
@@ -31,8 +33,8 @@ public class PageComponentsBuilder {
         JButton previousPageButton = new JButton();
         JButton nextPageButton = new JButton();
 
-        previousPageButton.setIcon(new ImageIcon(Parameters.ICON_LOCATION + "arrow_0" + Parameters.ICON_EXPANSION));
-        nextPageButton.setIcon(new ImageIcon(Parameters.ICON_LOCATION + "arrow_1" + Parameters.ICON_EXPANSION));
+        previousPageButton.setIcon(new ImageIcon(ICON_LOCATION + "arrow_0" + ICON_EXPANSION));
+        nextPageButton.setIcon(new ImageIcon(ICON_LOCATION + "arrow_1" + ICON_EXPANSION));
 
         nextPageButton.setMargin(new Insets(0, 0, 0, 0));
         previousPageButton.setMargin(new Insets(0, 0, 0, 0));

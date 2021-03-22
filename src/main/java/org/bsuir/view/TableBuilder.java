@@ -13,6 +13,7 @@ public class TableBuilder {
         this.table = new JTable();
         this.tableScrollPane = new JScrollPane(table);
 
+
         setTableInfo(model);
         setScrollPane();
     }

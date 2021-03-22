@@ -36,7 +36,7 @@ public class MainFrameController {
         menuItems[3].addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new DeletePatientView();
+                new DeletePatientView(model);
             }
         });
 
