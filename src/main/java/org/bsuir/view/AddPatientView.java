@@ -7,6 +7,6 @@ public class AddPatientView {
 
     public AddPatientView(Model model){
         AddPatientBuilder addPatientBuilder = new AddPatientBuilder();
-        AddPatientController addPatientController = new AddPatientController(model,addPatientBuilder.getTextFields(), addPatientBuilder.getDatePanels(), addPatientBuilder.getEnterButton());
+        new AddPatientController(model,addPatientBuilder.getTextFields(), addPatientBuilder.getDatePanels(), addPatientBuilder.getEnterButton());
     }
 }

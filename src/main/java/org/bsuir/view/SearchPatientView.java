@@ -7,7 +7,7 @@ public class SearchPatientView {
 
     public SearchPatientView(Model model){
         SearchPatientBuilder searchPatientBuilder = new SearchPatientBuilder(model);
-        SearchPatientController searchPatientController = new SearchPatientController(model, searchPatientBuilder.getDeleteButton(), searchPatientBuilder.getTextFields(), searchPatientBuilder.getLabelItems(), searchPatientBuilder.getDatePanels(), searchPatientBuilder.getSearchByTypeComboBox(), searchPatientBuilder.getTable());
+        new SearchPatientController(model, searchPatientBuilder.getDeleteButton(), searchPatientBuilder.getCardsTextFields(), searchPatientBuilder.getCardsLabelItems(), searchPatientBuilder.getCardsDatePanels(), searchPatientBuilder.getSearchByTypeComboBox(), searchPatientBuilder.getTable(),searchPatientBuilder.getPageButtonItems(),searchPatientBuilder.getPageSpinner(),searchPatientBuilder.getPageLabelItems(),searchPatientBuilder.getCards());
     }
 
 }

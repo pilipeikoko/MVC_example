@@ -5,13 +5,10 @@ import org.jdatepicker.impl.JDatePanelImpl;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
 public class DeletePatientBuilder {
 
     private final CardsBuilder cardsBuilder;
-    private final JDialog dialog;
     private final JComboBox<String> deleteByTypeComboBox;
     private final JButton deleteButton;
 
@@ -20,20 +17,11 @@ public class DeletePatientBuilder {
 
         cardsBuilder = new CardsBuilder();
 
-        dialog = new JDialog();
+        JDialog dialog = new JDialog();
         dialog.setPreferredSize(new Dimension(400, 220));
 
         deleteByTypeComboBox = new JComboBox<>(Parameters.SEARCH_TYPES);
         deleteByTypeComboBox.setMaximumSize(new Dimension(30, 100));
-
-        //TODO remove controller
-        deleteByTypeComboBox.addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                CardLayout layout = (CardLayout)(cardsBuilder.getCards().getLayout());
-                layout.show(cardsBuilder.getCards(), (String)e.getItem());
-            }
-        });
 
         JPanel defaultDeletePanel = createDefaultDeletePanel();
 
@@ -70,11 +58,16 @@ public class DeletePatientBuilder {
         return cardsBuilder.getLabelItems();
     }
 
+
     public JDatePanelImpl[] getDatePanels() {
         return cardsBuilder.getDatePanels();
     }
 
     public JComboBox<String> getDeleteByTypeComboBox() {
         return deleteByTypeComboBox;
+    }
+
+    public JPanel getCards(){
+        return cardsBuilder.getCards();
     }
 }

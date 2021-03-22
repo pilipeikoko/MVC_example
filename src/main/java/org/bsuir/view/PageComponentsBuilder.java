@@ -1,11 +1,10 @@
 package org.bsuir.view;
 
-import org.bsuir.model.Parameters;
-
 import javax.swing.*;
 import java.awt.*;
 
 public class PageComponentsBuilder {
+    public static final int DEFAULT_AMOUNT_OF_NOTES_ON_THE_TABLE = 10;
     public static final String ICON_LOCATION = "src/main/resources/icons/";
     public static final String ICON_EXPANSION = ".png";
     public static final int AMOUNT_OF_LABELS = 4;
@@ -22,7 +21,7 @@ public class PageComponentsBuilder {
         addJLabels();
         addJButtons();
 
-        SpinnerModel value = new SpinnerNumberModel(10, 0, 100, 1);
+        SpinnerModel value = new SpinnerNumberModel(DEFAULT_AMOUNT_OF_NOTES_ON_THE_TABLE, 1, 100, 1);
         pageSpinner = new JSpinner(value);
         pageSpinner.setMaximumSize(new Dimension(30, 30));
     }
@@ -46,21 +45,32 @@ public class PageComponentsBuilder {
     }
 
     private void addJLabels() {
-        JLabel chooseRecordCountLabel = new JLabel("Choose record count");
-        JLabel pageCountLabel = new JLabel("Page count");
-        JLabel totalRecordCounterLabel = new JLabel("Total record counter");
-        JLabel pageNumberLabel = new JLabel("Page number");
+        JLabel chooseAmountOfNotesOnTable = new JLabel("Choose record count");
+        JLabel pageCountLabel = new JLabel("Page count: 1");
+        JLabel AmountOfPatientsLabel = new JLabel("Total record counter: 0");
+        JLabel currentPageLabel = new JLabel("1");
 
-        labelItems[0] = chooseRecordCountLabel;
+        labelItems[0] = chooseAmountOfNotesOnTable;
         labelItems[1] = pageCountLabel;
-        labelItems[2] = totalRecordCounterLabel;
-        labelItems[3] = pageNumberLabel;
+        labelItems[2] = AmountOfPatientsLabel;
+        labelItems[3] = currentPageLabel;
     }
-
+    /**
+     * <br>[0] first page button</br>
+     * <br>[1] previous page button</br>
+     * <br>[2] next page button</br>
+     * <br>[3] last page button</br>
+     */
     public JButton[] getButtonItems() {
         return buttonItems;
     }
 
+    /**
+     * <br>[0] amount of notes on the table</br>
+     * <br>[1] amount of pages</br>
+     * <br>[2] amount of patients</br>
+     * <br>[3] current page</br>
+     */
     public JLabel[] getLabelItems() {
         return labelItems;
     }

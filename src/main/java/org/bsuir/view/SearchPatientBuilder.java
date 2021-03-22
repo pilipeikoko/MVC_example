@@ -6,23 +6,20 @@ import org.jdatepicker.impl.JDatePanelImpl;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
 public class SearchPatientBuilder {
     private final CardsBuilder cardsBuilder;
     private final JButton searchButton;
-    private final JDialog dialog;
     private final JComboBox<String> searchByTypeComboBox;
     private final TableBuilder tableBuilder;
     private final PageComponentsBuilder pageComponentsBuilder;
 
-    public SearchPatientBuilder(Model model){
+    public SearchPatientBuilder(Model model) {
         cardsBuilder = new CardsBuilder();
 
         searchButton = new JButton("Search");
 
-        dialog = new JDialog();
+        JDialog dialog = new JDialog();
         dialog.setPreferredSize(new Dimension(920, 525));
 
         searchByTypeComboBox = new JComboBox<>(Parameters.SEARCH_TYPES);
@@ -32,23 +29,13 @@ public class SearchPatientBuilder {
         tableBuilder = new TableBuilder(model);
         pageComponentsBuilder = new PageComponentsBuilder();
 
-        //todo remove controller
-        searchByTypeComboBox.addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                CardLayout layout = (CardLayout)(cardsBuilder.getCards().getLayout());
-                layout.show(cardsBuilder.getCards(), (String)e.getItem());
-            }
-        });
-
         JPanel defaultSearchPanel = createDefaultDeletePanel();
         JPanel tablePanel = createTablePanel();
 
-        dialog.add(defaultSearchPanel,BorderLayout.NORTH);
-        dialog.add(cardsBuilder.getCards(),BorderLayout.CENTER);
-        dialog.add(searchButton,BorderLayout.SOUTH);
-        dialog.add(tablePanel,BorderLayout.EAST);
-
+        dialog.add(defaultSearchPanel, BorderLayout.NORTH);
+        dialog.add(cardsBuilder.getCards(), BorderLayout.CENTER);
+        dialog.add(searchButton, BorderLayout.SOUTH);
+        dialog.add(tablePanel, BorderLayout.EAST);
 
 
         dialog.pack();
@@ -57,7 +44,7 @@ public class SearchPatientBuilder {
 
     private JPanel createTablePanel() {
         JPanel tablePanel = new JPanel();
-        tablePanel.setPreferredSize(new Dimension(700,300));
+        tablePanel.setPreferredSize(new Dimension(700, 300));
         GroupLayout layout = new GroupLayout(tablePanel);
         tablePanel.setLayout(layout);
 
@@ -114,24 +101,36 @@ public class SearchPatientBuilder {
 
         defaultSearchPanel.add(searchByLabel);
         defaultSearchPanel.add(searchByTypeComboBox);
-        defaultSearchPanel.setMaximumSize(new Dimension(300,100));
+        defaultSearchPanel.setMaximumSize(new Dimension(300, 100));
 
         return defaultSearchPanel;
+    }
+
+    public JButton[] getPageButtonItems() {
+        return pageComponentsBuilder.getButtonItems();
+    }
+
+    public JLabel[] getPageLabelItems(){
+        return pageComponentsBuilder.getLabelItems();
+    }
+
+    public JSpinner getPageSpinner(){
+        return pageComponentsBuilder.getPageSpinner();
     }
 
     public JButton getDeleteButton() {
         return searchButton;
     }
 
-    public JTextField[] getTextFields() {
+    public JTextField[] getCardsTextFields() {
         return cardsBuilder.getTextFields();
     }
 
-    public JLabel[] getLabelItems() {
+    public JLabel[] getCardsLabelItems() {
         return cardsBuilder.getLabelItems();
     }
 
-    public JDatePanelImpl[] getDatePanels() {
+    public JDatePanelImpl[] getCardsDatePanels() {
         return cardsBuilder.getDatePanels();
     }
 
@@ -139,7 +138,11 @@ public class SearchPatientBuilder {
         return searchByTypeComboBox;
     }
 
-    public JTable getTable(){
+    public JTable getTable() {
         return tableBuilder.getTable();
+    }
+
+    public JPanel getCards(){
+        return cardsBuilder.getCards();
     }
 }

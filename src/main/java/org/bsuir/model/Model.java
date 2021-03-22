@@ -75,6 +75,8 @@ public class Model extends DefaultTableModel {
     }
 
     private String parseDate(Date date) {
+        if(date == null)
+            return "";
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
@@ -101,7 +103,7 @@ public class Model extends DefaultTableModel {
 
     }
 
-    public Model createSubModelByFullNameAndAddress(String fullName, String address) {
+    public Model createSubModelByFullNameAndAddress(String fullName, String address) throws ArrayIndexOutOfBoundsException {
         Model model = new Model();
 
         //todo remove it
@@ -122,7 +124,7 @@ public class Model extends DefaultTableModel {
         return model;
     }
 
-    public Model createSubModelByBirthday(Date birthday) {
+    public Model createSubModelByBirthday(Date birthday) throws ArrayIndexOutOfBoundsException {
         Model model = new Model();
 
         //todo remove it
@@ -147,7 +149,7 @@ public class Model extends DefaultTableModel {
         return model;
     }
 
-    public Model createSubModelByDoctorsFullNameOrDateReceipt(String doctorsFullName, Date dateOfReceipt) {
+    public Model createSubModelByDoctorsFullNameOrDateReceipt(String doctorsFullName, Date dateOfReceipt) throws ArrayIndexOutOfBoundsException {
 
         Model model = new Model();
 
@@ -171,5 +173,31 @@ public class Model extends DefaultTableModel {
             }
         }
         return model;
+    }
+
+    public Model createPagedSubModel(int page, int amountOfDataOnThePage) throws ArrayIndexOutOfBoundsException {
+
+        Model subModel = new Model();
+
+        //todo remove it
+        while (subModel.getRowCount() != 0)
+            subModel.removeRow(0);
+
+        int currentRowNumber = (page - 1) * amountOfDataOnThePage;
+        int lastRowNumber = (page) * amountOfDataOnThePage;
+
+        int totalNumberOfLines = getRowCount();
+
+        if (lastRowNumber > totalNumberOfLines)
+            lastRowNumber = totalNumberOfLines;
+
+        for (; currentRowNumber < lastRowNumber; ++currentRowNumber) {
+            Vector<Vector> tableData = getDataVector();
+
+            Vector data = tableData.elementAt(currentRowNumber);
+            subModel.addRow(data.toArray());
+        }
+
+        return subModel;
     }
 }

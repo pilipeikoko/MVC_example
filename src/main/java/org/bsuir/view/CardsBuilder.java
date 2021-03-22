@@ -9,7 +9,7 @@ import org.jdatepicker.impl.UtilDateModel;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Properties;
-
+//FIXME mb refactor
 public class CardsBuilder {
     private static final int AMOUNT_OF_TEXT_FIELDS = 3;
     private static final int AMOUNT_OF_DATE_PANELS = 2;
@@ -156,14 +156,30 @@ public class CardsBuilder {
         labelItems[1] = addressLabel;
     }
 
+    /**
+     * <br>[0] birthday</br>
+     * <br>[1] date of receipt</br>
+     */
     public JDatePanelImpl[] getDatePanels() {
         return datePanels;
     }
 
+    /**
+     * <br>[0] full name</br>
+     * <br>[1] address</br>
+     * <br>[2] birthday </br>
+     * <br>[3] receipt date</br>
+     * <br>[4] doctors full name </br>
+     */
     public JLabel[] getLabelItems() {
         return labelItems;
     }
 
+    /**
+     * <br>[0] full name</br>
+     * <br>[1] address</br>
+     * <br>[2] doctors full name</br>
+     */
     public JTextField[] getTextFields() {
         return textFields;
     }

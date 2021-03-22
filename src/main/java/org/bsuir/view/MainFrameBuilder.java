@@ -6,15 +6,19 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MainFrameBuilder {
+    private static final int DEFAULT_AMOUNT_OF_NOTES_ON_THE_TABLE = PageComponentsBuilder.DEFAULT_AMOUNT_OF_NOTES_ON_THE_TABLE;
+
     private final JFrame frame;
+    private final Model model;
 
     private final MenuBarBuilder menuBarBuilder;
     private final TableBuilder tableBuilder;
     private final PageComponentsBuilder pageComponentsBuilder;
 
     public MainFrameBuilder(Model model) {
+        this.model = model;
         menuBarBuilder = new MenuBarBuilder();
-        tableBuilder = new TableBuilder(model);
+        tableBuilder = new TableBuilder(model.createPagedSubModel(1,DEFAULT_AMOUNT_OF_NOTES_ON_THE_TABLE));
         pageComponentsBuilder = new PageComponentsBuilder();
 
         frame = new JFrame("Hospital database");
@@ -76,6 +80,9 @@ public class MainFrameBuilder {
 
     }
 
+    public JTable getTable(){
+        return tableBuilder.getTable();
+    }
 
     public MenuItem[] getMenuBarItems(){
         return this.menuBarBuilder.getMenuBarItems();
@@ -97,4 +104,7 @@ public class MainFrameBuilder {
         return this.frame;
     }
 
+    public Model getModel() {
+        return model;
+    }
 }

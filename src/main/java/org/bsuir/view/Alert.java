@@ -20,10 +20,22 @@ public class Alert {
     }
 
     public static void successfulAddingAlert() {
-        JOptionPane.showMessageDialog(null, "successfully added");
+        JOptionPane.showMessageDialog(null, "Successfully added");
     }
 
     public static void unsuccessfulAddingAlert(String reason) {
         JOptionPane.showMessageDialog(null, "Incorrect format: " + reason);
+    }
+
+    public static void wrongPageAlert() {
+        JOptionPane.showMessageDialog(null, "Wrong page");
+    }
+
+    public static void unknownTypeAlert(){
+        JOptionPane.showMessageDialog(null,"Unknown type");
+    }
+
+    public static void unsuccessfulSearchAlert(String reason){
+        JOptionPane.showMessageDialog(null,reason);
     }
 }

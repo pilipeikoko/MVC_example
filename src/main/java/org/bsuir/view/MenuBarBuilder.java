@@ -1,7 +1,5 @@
 package org.bsuir.view;
 
-import org.bsuir.model.Parameters;
-
 import java.awt.*;
 
 public class MenuBarBuilder {
@@ -48,7 +46,13 @@ public class MenuBarBuilder {
         menuBarItems[3] = deletePatient;
         menuBarItems[4] = searchPatient;
     }
-
+    /**
+     * <br>[0] open file item</br>
+     * <br>[1] save as item</br>
+     * <br>[2] add patient item</br>
+     * <br>[3] delete patient item</br>
+     * <br>[4] search patient item</br>
+     */
     public MenuItem[] getMenuBarItems() {
         return menuBarItems;
     }

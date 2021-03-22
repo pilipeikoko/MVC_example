@@ -33,10 +33,6 @@ public class AddPatientBuilder {
         addTextFields();
         addDateComponents();
 
-        UtilDateModel model = new UtilDateModel();
-        JDatePanelImpl datePanel = new JDatePanelImpl(model, new Properties());
-        JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
-
         dialog = new JDialog();
         setDialog();
     }
