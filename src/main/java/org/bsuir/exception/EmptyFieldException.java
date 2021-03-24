@@ -1,13 +1,13 @@
 package org.bsuir.exception;
 
-public class EmptyFieldException extends Throwable{
+public class EmptyFieldException extends Throwable {
     private final String message;
 
-    public EmptyFieldException(){
+    public EmptyFieldException() {
         this.message = "Empty field";
     }
 
-    public EmptyFieldException(String message){
+    public EmptyFieldException(String message) {
         this.message = message;
     }
 

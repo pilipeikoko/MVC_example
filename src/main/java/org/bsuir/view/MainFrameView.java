@@ -1,16 +1,17 @@
 package org.bsuir.view;
 
 import org.bsuir.controller.MainFrameController;
-import org.bsuir.model.Model;
+import org.bsuir.model.PatientsTableModel;
 
 
 public class MainFrameView {
 
     public MainFrameView() {
-        Model model = new Model();
-        MainFrameBuilder frameBuilder = new MainFrameBuilder(model);
+        PatientsTableModel patientsTableModel = new PatientsTableModel();
+        MainFrameBuilder frameBuilder = new MainFrameBuilder(patientsTableModel);
 
-        new MainFrameController(model,frameBuilder.getMenuBarItems(),frameBuilder.getButtonItems(),frameBuilder.getLabelItems(), frameBuilder.getPageSpinner(), frameBuilder.getTable());
+        new MainFrameController(patientsTableModel,frameBuilder.getMenuBarItems(),frameBuilder.getButtonItems(),
+                frameBuilder.getLabelItems(), frameBuilder.getPageSpinner(), frameBuilder.getTable());
 
     }
 

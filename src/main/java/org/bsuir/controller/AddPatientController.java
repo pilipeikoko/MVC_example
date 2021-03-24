@@ -1,6 +1,7 @@
 package org.bsuir.controller;
 
-import org.bsuir.model.Model;
+import org.bsuir.model.DateManager;
+import org.bsuir.model.PatientsTableModel;
 import org.bsuir.model.Patient;
 import org.bsuir.view.Alert;
 import org.bsuir.view.DeletePatientBuilder;
@@ -10,8 +11,12 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.util.Date;
 
+//todo lists of patients
+//todo zachem removeAll filewriter
+//todo OTCHET
+
 public class AddPatientController {
-    private final Model model;
+    private final PatientsTableModel patientsTableModel;
     private Patient patient;
     /**
      * @see DeletePatientBuilder#getTextFields()
@@ -23,8 +28,9 @@ public class AddPatientController {
     private final JDatePanelImpl[] datePanels;
     private final JButton enterButton;
 
-    public AddPatientController(Model model, JTextField[] textFields, JDatePanelImpl[] datePanels, JButton enterButton) {
-        this.model = model;
+    public AddPatientController(PatientsTableModel model, JTextField[] textFields,
+                                JDatePanelImpl[] datePanels, JButton enterButton) {
+        this.patientsTableModel = model;
         this.textFields = textFields;
         this.datePanels = datePanels;
         this.enterButton = enterButton;
@@ -46,7 +52,7 @@ public class AddPatientController {
     }
 
     private void addPatientToModel() {
-        model.addPatient(patient);
+        patientsTableModel.addPatient(patient);
     }
 
 
@@ -69,10 +75,11 @@ public class AddPatientController {
     private void getInformation() {
         String fullName = textFields[0].getText();
         String placeOfResidence = textFields[1].getText();
-        Date birthday = (Date) datePanels[0].getModel().getValue();
-        Date dateOfReceipt = (Date) datePanels[1].getModel().getValue();
+        DateManager birthdayManager = new DateManager((Date) datePanels[0].getModel().getValue());
+        DateManager dateOfReceiptManager = new DateManager((Date) datePanels[1].getModel().getValue());
         String doctorsFullName = textFields[2].getText();
         String conclusion = textFields[3].getText();
-        patient = new Patient(fullName, placeOfResidence, birthday, dateOfReceipt, doctorsFullName, conclusion);
+        patient = new Patient(fullName, placeOfResidence, birthdayManager,
+                dateOfReceiptManager, doctorsFullName, conclusion);
     }
 }

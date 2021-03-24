@@ -1,6 +1,6 @@
 package org.bsuir.view;
 
-import org.bsuir.model.Model;
+import org.bsuir.model.PatientsTableModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,14 +9,14 @@ public class MainFrameBuilder {
     private static final int DEFAULT_AMOUNT_OF_NOTES_ON_THE_TABLE = PageComponentsBuilder.DEFAULT_AMOUNT_OF_NOTES_ON_THE_TABLE;
 
     private final JFrame frame;
-    private final Model model;
+    private final PatientsTableModel patientsTableModel;
 
     private final MenuBarBuilder menuBarBuilder;
     private final TableBuilder tableBuilder;
     private final PageComponentsBuilder pageComponentsBuilder;
 
-    public MainFrameBuilder(Model model) {
-        this.model = model;
+    public MainFrameBuilder(PatientsTableModel model) {
+        this.patientsTableModel = model;
         menuBarBuilder = new MenuBarBuilder();
         tableBuilder = new TableBuilder(model.createPagedSubModel(1,DEFAULT_AMOUNT_OF_NOTES_ON_THE_TABLE));
         pageComponentsBuilder = new PageComponentsBuilder();
@@ -39,7 +39,7 @@ public class MainFrameBuilder {
         setVerticalLayout(layout);
 
         frame.pack();
-        frame.setSize(700, 300);
+        frame.setBounds(300,150,1000,500);
 
         frame.setVisible(true);
     }
@@ -104,7 +104,7 @@ public class MainFrameBuilder {
         return this.frame;
     }
 
-    public Model getModel() {
-        return model;
+    public PatientsTableModel getModel() {
+        return patientsTableModel;
     }
 }

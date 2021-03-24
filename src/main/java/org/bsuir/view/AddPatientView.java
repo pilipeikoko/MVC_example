@@ -1,12 +1,13 @@
 package org.bsuir.view;
 
 import org.bsuir.controller.AddPatientController;
-import org.bsuir.model.Model;
+import org.bsuir.model.PatientsTableModel;
 
 public class AddPatientView {
 
-    public AddPatientView(Model model){
+    public AddPatientView(PatientsTableModel model){
         AddPatientBuilder addPatientBuilder = new AddPatientBuilder();
-        new AddPatientController(model,addPatientBuilder.getTextFields(), addPatientBuilder.getDatePanels(), addPatientBuilder.getEnterButton());
+        new AddPatientController(model,addPatientBuilder.getTextFields(), addPatientBuilder.getDatePanels(),
+                addPatientBuilder.getEnterButton());
     }
 }

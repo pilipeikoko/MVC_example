@@ -39,6 +39,7 @@ public class AddPatientBuilder {
 
     private void setDialog() {
         dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        dialog.setLocation(550,250);
         dialog.setPreferredSize(new Dimension(450, 300));
 
         GroupLayout layout = new GroupLayout(dialog.getContentPane());

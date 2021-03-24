@@ -1,16 +1,14 @@
 package org.bsuir.model;
 
-import java.util.Date;
-
 public class Patient {
-    private final String fullName;
-    private final String placeOfResidence;
-    private final Date birthday;
-    private final Date dateOfReceipt;
-    private final String doctorsFullName;
-    private final String conclusion;
+    private String fullName;
+    private String placeOfResidence;
+    private DateManager birthday;
+    private DateManager dateOfReceipt;
+    private String doctorsFullName;
+    private String conclusion;
 
-    public Patient(String fullName, String placeOfResidence,Date birthday,Date dateOfReceipt,String doctorsFullName,String conclusion){
+    public Patient(String fullName, String placeOfResidence, DateManager birthday, DateManager dateOfReceipt, String doctorsFullName, String conclusion) {
         this.fullName = fullName;
         this.placeOfResidence = placeOfResidence;
         this.birthday = birthday;
@@ -19,11 +17,15 @@ public class Patient {
         this.conclusion = conclusion;
     }
 
-    public Date getBirthday() {
+    public Patient() {
+
+    }
+
+    public DateManager getBirthday() {
         return birthday;
     }
 
-    public Date getDateOfReceipt() {
+    public DateManager getDateOfReceipt() {
         return dateOfReceipt;
     }
 
@@ -41,5 +43,30 @@ public class Patient {
 
     public String getPlaceOfResidence() {
         return placeOfResidence;
+    }
+
+
+    public void setBirthday(DateManager birthday) {
+        this.birthday = birthday;
+    }
+
+    public void setConclusion(String conclusion) {
+        this.conclusion = conclusion;
+    }
+
+    public void setDateOfReceipt(DateManager dateOfReceipt) {
+        this.dateOfReceipt = dateOfReceipt;
+    }
+
+    public void setDoctorsFullName(String doctorsFullName) {
+        this.doctorsFullName = doctorsFullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public void setPlaceOfResidence(String placeOfResidence) {
+        this.placeOfResidence = placeOfResidence;
     }
 }

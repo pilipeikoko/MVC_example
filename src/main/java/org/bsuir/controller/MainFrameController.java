@@ -1,6 +1,6 @@
 package org.bsuir.controller;
 
-import org.bsuir.model.Model;
+import org.bsuir.model.PatientsTableModel;
 import org.bsuir.view.*;
 
 import javax.swing.*;
@@ -26,11 +26,12 @@ public class MainFrameController {
      */
     private final JLabel[] labelItems;
     private final JSpinner pageSpinner;
-    private final Model model;
+    private final PatientsTableModel patientsTableModel;
     private final JTable table;
 
-    public MainFrameController(Model model, MenuItem[] menuItems, JButton[] buttonItems, JLabel[] labelItems, JSpinner pageSpinner, JTable table) {
-        this.model = model;
+    public MainFrameController(PatientsTableModel model, MenuItem[] menuItems, JButton[] buttonItems,
+                               JLabel[] labelItems, JSpinner pageSpinner, JTable table) {
+        this.patientsTableModel = model;
         this.buttonItems = buttonItems;
         this.menuItems = menuItems;
         this.labelItems = labelItems;
@@ -44,7 +45,7 @@ public class MainFrameController {
     }
 
     private void addModelDataChangedListener() {
-        model.addTableModelListener(new TableModelListener() {
+        patientsTableModel.addTableModelListener(new TableModelListener() {
             @Override
             public void tableChanged(TableModelEvent e) {
                 int newPageNumber = Integer.parseInt(labelItems[3].getText());
@@ -70,13 +71,12 @@ public class MainFrameController {
 
     private void updateComponents(int newPageNumber) throws ArrayIndexOutOfBoundsException {
         int amountOfNotesOnTheTable = getAmountOfNotesOnTheTable();
-        int amountOfPages = (model.getRowCount()-1) / amountOfNotesOnTheTable + 1;
+        int amountOfPages = (patientsTableModel.getRowCount() - 1) / amountOfNotesOnTheTable + 1;
 
-        table.setModel(model.createPagedSubModel(newPageNumber, amountOfNotesOnTheTable));
-
-        //fixme total record counter
+        table.setModel(patientsTableModel.createPagedSubModel(newPageNumber, amountOfNotesOnTheTable));
 
         labelItems[1].setText("Page count: " + amountOfPages);
+        labelItems[2].setText("Total record counter: " + patientsTableModel.getRowCount());
         labelItems[3].setText(String.valueOf(newPageNumber));
     }
 
@@ -124,7 +124,7 @@ public class MainFrameController {
                 try {
                     int amountOfNotesOnTheTable = getAmountOfNotesOnTheTable();
 
-                    int newPageNumber = (model.getRowCount()-1) / amountOfNotesOnTheTable + 1;
+                    int newPageNumber = (patientsTableModel.getRowCount() - 1) / amountOfNotesOnTheTable + 1;
                     updateComponents(newPageNumber);
 
                 } catch (ArrayIndexOutOfBoundsException exception) {
@@ -139,24 +139,38 @@ public class MainFrameController {
     }
 
     public void setMenuItemsController() {
+        menuItems[0].addActionListener(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new LoadFromFileView(patientsTableModel);
+            }
+        });
+
+        menuItems[1].addActionListener(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new SaveToFileView(patientsTableModel);
+            }
+        });
+
         menuItems[2].addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new AddPatientView(model);
+                new AddPatientView(patientsTableModel);
             }
         });
 
         menuItems[3].addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new DeletePatientView(model);
+                new DeletePatientView(patientsTableModel);
             }
         });
 
         menuItems[4].addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new SearchPatientView(new Model());
+                new SearchPatientView(patientsTableModel);
             }
         });
     }

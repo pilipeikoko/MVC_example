@@ -1,6 +1,6 @@
 package org.bsuir.view;
 
-import org.bsuir.model.Model;
+import org.bsuir.model.PatientsTableModel;
 import org.bsuir.model.Parameters;
 import org.jdatepicker.impl.JDatePanelImpl;
 
@@ -14,12 +14,13 @@ public class SearchPatientBuilder {
     private final TableBuilder tableBuilder;
     private final PageComponentsBuilder pageComponentsBuilder;
 
-    public SearchPatientBuilder(Model model) {
+    public SearchPatientBuilder(PatientsTableModel model) {
         cardsBuilder = new CardsBuilder();
 
         searchButton = new JButton("Search");
 
         JDialog dialog = new JDialog();
+        dialog.setLocation(350,200);
         dialog.setPreferredSize(new Dimension(920, 525));
 
         searchByTypeComboBox = new JComboBox<>(Parameters.SEARCH_TYPES);

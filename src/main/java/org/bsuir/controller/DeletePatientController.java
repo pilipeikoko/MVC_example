@@ -1,7 +1,8 @@
 package org.bsuir.controller;
 
 import org.bsuir.exception.EmptyFieldException;
-import org.bsuir.model.Model;
+import org.bsuir.model.DateManager;
+import org.bsuir.model.PatientsTableModel;
 import org.bsuir.model.Parameters;
 import org.bsuir.view.Alert;
 import org.bsuir.view.DeletePatientBuilder;
@@ -16,7 +17,7 @@ import java.util.Date;
 
 public class DeletePatientController {
 
-    private final Model model;
+    private final PatientsTableModel patientsTableModel;
     private final JButton deleteButton;
     /**
      * @see DeletePatientBuilder#getTextFields()
@@ -33,11 +34,11 @@ public class DeletePatientController {
     private final JComboBox<String> deleteByTypeComboBox;
     private final JPanel cards;
 
-    public DeletePatientController(Model model, JButton deleteButton
+    public DeletePatientController(PatientsTableModel model, JButton deleteButton
             , JTextField[] textFields, JLabel[] labelItems
             , JDatePanelImpl[] datePanels, JComboBox<String> deleteByTypeComboBox, JPanel cards) {
 
-        this.model = model;
+        this.patientsTableModel = model;
         this.deleteButton = deleteButton;
         this.textFields = textFields;
         this.labelItems = labelItems;
@@ -76,22 +77,22 @@ public class DeletePatientController {
                         String fullName = getFullName();
                         String address = getAddress();
 
-                        amountOfDeletedPatients = model.deleteByFullNameOrAddress(fullName, address);
+                        amountOfDeletedPatients = patientsTableModel.deleteByFullNameOrAddress(fullName, address);
                     } else if (deleteType.equals(Parameters.SEARCH_TYPES[1])) {
-                        Date birthday = getBirthday();
+                        DateManager birthday = new DateManager(getBirthday());
 
-                        amountOfDeletedPatients = model.deleteByBirthday(birthday);
+                        amountOfDeletedPatients = patientsTableModel.deleteByBirthday(birthday);
                     } else if (deleteType.equals(Parameters.SEARCH_TYPES[2])) {
                         String doctorsFullName = getDoctorFullName();
-                        Date dateOfReceipt = getDateOfReceipt();
+                        DateManager dateOfReceipt = new DateManager(getDateOfReceipt());
 
-                        amountOfDeletedPatients = model.deleteByDoctorsFullNameOrDateReceipt(doctorsFullName, dateOfReceipt);
+                        amountOfDeletedPatients = patientsTableModel.deleteByDoctorsFullNameOrDateReceipt(doctorsFullName, dateOfReceipt);
 
                     }
 
                     SwingUtilities.getWindowAncestor(deleteButton).dispose();
                     Alert.deletionAlert(amountOfDeletedPatients);
-                } catch (EmptyFieldException exception){
+                } catch (EmptyFieldException exception) {
                     Alert.unknownTypeAlert();
                 }
             }

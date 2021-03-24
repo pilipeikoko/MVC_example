@@ -31,11 +31,27 @@ public class Alert {
         JOptionPane.showMessageDialog(null, "Wrong page");
     }
 
-    public static void unknownTypeAlert(){
-        JOptionPane.showMessageDialog(null,"Unknown type");
+    public static void unknownTypeAlert() {
+        JOptionPane.showMessageDialog(null, "Unknown type");
     }
 
-    public static void unsuccessfulSearchAlert(String reason){
-        JOptionPane.showMessageDialog(null,reason);
+    public static void unsuccessfulSearchAlert(String reason) {
+        JOptionPane.showMessageDialog(null, reason);
+    }
+
+    public static void unsuccessfulOpenFileAlert() {
+        JOptionPane.showMessageDialog(null, "Couldn't open file");
+    }
+
+    public static void unsuccessfulWriteToFileAlert() {
+        JOptionPane.showMessageDialog(null, "Couldn't write to file");
+    }
+
+    public static void loadFromFileAlert() {
+        JOptionPane.showMessageDialog(null, "Couldn't save to file");
+    }
+
+    public static void incorrectFormatAlert() {
+        JOptionPane.showMessageDialog(null, "Only XML formats are supported");
     }
 }

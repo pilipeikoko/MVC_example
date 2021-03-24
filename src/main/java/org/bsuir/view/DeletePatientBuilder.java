@@ -18,6 +18,7 @@ public class DeletePatientBuilder {
         cardsBuilder = new CardsBuilder();
 
         JDialog dialog = new JDialog();
+        dialog.setLocation(600,300);
         dialog.setPreferredSize(new Dimension(400, 220));
 
         deleteByTypeComboBox = new JComboBox<>(Parameters.SEARCH_TYPES);

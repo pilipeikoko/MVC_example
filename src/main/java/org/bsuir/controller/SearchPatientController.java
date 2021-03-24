@@ -1,7 +1,8 @@
 package org.bsuir.controller;
 
 import org.bsuir.exception.EmptyFieldException;
-import org.bsuir.model.Model;
+import org.bsuir.model.DateManager;
+import org.bsuir.model.PatientsTableModel;
 import org.bsuir.model.Parameters;
 import org.bsuir.view.Alert;
 import org.bsuir.view.CardsBuilder;
@@ -43,18 +44,17 @@ public class SearchPatientController {
     private final JLabel[] pageLabelItems;
     private final JSpinner pageSpinner;
 
-    private final Model fullModel;
-    private Model foundModel;
+    private final PatientsTableModel fullModel;
+    private PatientsTableModel foundModel;
     private final JButton SearchButton;
     private final JComboBox<String> searchByTypeComboBox;
     private final JTable table;
     private final JPanel cards;
 
-    public SearchPatientController(Model fullModel, JButton SearchButton
-            , JTextField[] cardsTextFields, JLabel[] cardsLabelItems
-            , JDatePanelImpl[] datePanel, JComboBox<String> searchByTypeComboBox
-            , JTable table, JButton[] pageButtonItems, JSpinner pageSpinner
-            , JLabel[] pageLabelItems, JPanel cards) {
+    public SearchPatientController(PatientsTableModel fullModel, JButton SearchButton, JTextField[] cardsTextFields,
+                                   JLabel[] cardsLabelItems, JDatePanelImpl[] datePanel,
+                                   JComboBox<String> searchByTypeComboBox, JTable table, JButton[] pageButtonItems,
+                                   JSpinner pageSpinner, JLabel[] pageLabelItems, JPanel cards) {
 
         this.table = table;
         this.fullModel = fullModel;
@@ -156,10 +156,10 @@ public class SearchPatientController {
         int amountOfNotesOnTheTable = getAmountOfNotesOnTheTable();
         int amountOfPages = (foundModel.getRowCount() - 1) / amountOfNotesOnTheTable + 1;
 
-        //fixme total record counter
         table.setModel(foundModel.createPagedSubModel(newPageNumber, amountOfNotesOnTheTable));
 
         pageLabelItems[1].setText("Page count: " + amountOfPages);
+        pageLabelItems[2].setText("Total record counter: " + fullModel.getRowCount());
         pageLabelItems[3].setText(String.valueOf(newPageNumber));
     }
 
@@ -182,19 +182,20 @@ public class SearchPatientController {
                         table.setModel(foundModel);
 
                     } else if (currentSearchType.equals(Parameters.SEARCH_TYPES[1])) {
-                        Date birthday = getBirthday();
+                        DateManager birthday = new DateManager(getBirthday());
                         foundModel = fullModel.createSubModelByBirthday(birthday);
                         table.setModel(foundModel);
 
 
                     } else if (currentSearchType.equals(Parameters.SEARCH_TYPES[2])) {
                         String doctorsFullName = getDoctorFullName();
-                        Date dateOfReceipt = getDateOfReceipt();
+                        DateManager dateOfReceipt = new DateManager(getDateOfReceipt());
 
-                        foundModel = fullModel.createSubModelByDoctorsFullNameOrDateReceipt(doctorsFullName, dateOfReceipt);
+                        foundModel = fullModel.createSubModelByDoctorsFullNameOrDateReceipt(doctorsFullName,
+                                dateOfReceipt);
                         table.setModel(foundModel);
                     }
-                } catch (EmptyFieldException exception){
+                } catch (EmptyFieldException exception) {
                     Alert.unknownTypeAlert();
                 }
             }
@@ -219,8 +220,6 @@ public class SearchPatientController {
         return (int) pageSpinner.getValue();
     }
 
-
-    //todo check info
     private Date getDateOfReceipt() {
         return (Date) cardsDatePanels[1].getModel().getValue();
     }

@@ -9,7 +9,7 @@ import org.jdatepicker.impl.UtilDateModel;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Properties;
-//FIXME mb refactor
+//TODO mb refactor
 public class CardsBuilder {
     private static final int AMOUNT_OF_TEXT_FIELDS = 3;
     private static final int AMOUNT_OF_DATE_PANELS = 2;
