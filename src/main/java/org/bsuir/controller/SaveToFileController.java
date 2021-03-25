@@ -34,7 +34,6 @@ public class SaveToFileController {
                         xmlWriter.writeAll(patientsTableModel.getAllPatients());
                     } catch (IOException | ParseException | ParserConfigurationException | SAXException | TransformerException exception) {
                         Alert.unsuccessfulWriteToFileAlert();
-                        exception.printStackTrace();
                     }
                 }
             }

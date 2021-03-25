@@ -11,10 +11,6 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.util.Date;
 
-//todo lists of patients
-//todo zachem removeAll filewriter
-//todo OTCHET
-
 public class AddPatientController {
     private final PatientsTableModel patientsTableModel;
     private Patient patient;
@@ -43,10 +39,11 @@ public class AddPatientController {
             public void actionPerformed(ActionEvent e) {
                 getInformation();
 
-                addPatientToModel();
-                SwingUtilities.getWindowAncestor(enterButton).dispose();
-                Alert.successfulAddingAlert();
-
+                if(informationCorrect()) {
+                    addPatientToModel();
+                    SwingUtilities.getWindowAncestor(enterButton).dispose();
+                    Alert.successfulAddingAlert();
+                }
             }
         });
     }

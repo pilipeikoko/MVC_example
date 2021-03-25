@@ -188,7 +188,7 @@ public class PatientsTableModel extends DefaultTableModel {
 
     private void clearModel(){
         for(int i=0;i<getRowCount();++i){
-            removeRow(i);
+            removeRow(i--);
         }
     }
 

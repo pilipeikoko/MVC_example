@@ -30,6 +30,7 @@ public class LoadFromFileController {
                     if (actionTypeNumber == JFileChooser.APPROVE_OPTION) {
 
                         PatientsXMLReader xmlReader = new PatientsXMLReader(fileChooser.getSelectedFile());
+
                         patientsTableModel.resetModel(xmlReader.readAll());
                     }
                 } catch (IllegalArgumentException| SAXException| IOException  | ParserConfigurationException exception) {
